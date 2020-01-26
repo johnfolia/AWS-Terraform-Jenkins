@@ -3,9 +3,8 @@ pipeline {
  environment {
   PATH = "${PATH}:${getTerraformPath()}"
  }
-}
 
-stages {
+ stages {
    stage ('Create S3 Bucket') {
      steps {
        script {
