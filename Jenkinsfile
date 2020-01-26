@@ -7,21 +7,21 @@ pipeline {
  stages {
    stage ('Create S3 Bucket') {
      steps {
-       sh "ansible-playbook s3-bucket.yml"
+       sh label: 'create s3 bucket', script: 'ansible-playbook s3-bucket.yml'
      }
    }
    stage ('terraform init and apply -dev'){
      steps {
        sh label: 'dev', returnStatus: true, script: 'terraform workspace new dev'
        sh "terraform init"
-       sh "ansible-playbook terraform.yml"
+       sh label: 'dev', script: 'ansible-playbook terraform.yml'
      }
    }
    stage ('terraform init and apply -prod'){
      steps {
        sh label: 'prod', returnStatus: true, script: 'terraform workspace new prod'
        sh "terraform init"
-       sh "ansible-playbook terraform.yml -environment app_env=prod"
+       sh label: 'prod', script: 'ansible-playbook terraform.yml -environment app_env=prod'
      }
    }
  }
