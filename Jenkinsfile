@@ -34,6 +34,6 @@ pipeline {
  }
 
  def creates3Bucket(bucketName) {
-   sh label: 'dev', returnStatus: true, script: "/home/ansible/.local/bin/aws s3 mb ${bucketName} --region=use-west-2"
+   sh label: 'dev', returnStatus: true, script: "sudo aws s3 mb ${bucketName} --region=use-west-2"
  }
 
