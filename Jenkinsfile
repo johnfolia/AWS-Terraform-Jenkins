@@ -4,7 +4,6 @@ pipeline {
    PATH = "${PATH}:${getTerraformPath()}"
   }
 
-
  stages {
    stage ('Create S3 Bucket') {
      steps {
@@ -35,6 +34,6 @@ pipeline {
  }
 
  def creates3Bucket(bucketName) {
-   sh label: 'dev', returnStatus: true, script: "aws s3 mb ${bucketName} --region=use-west-2"
+   sh label: 'dev', returnStatus: true, script: "/home/ansible/.local/bin/aws s3 mb ${bucketName} --region=use-west-2"
  }
 
