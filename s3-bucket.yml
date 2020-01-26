@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install boto3
+      pip:
+        name: boto3
+        state: present
+    - name: Create S3 Bucket
+      s3_bucket:
+        name: kams-devops
+        state: present
