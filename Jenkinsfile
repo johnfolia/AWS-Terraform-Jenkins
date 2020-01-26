@@ -3,7 +3,13 @@ pipeline {
  environment {
   PATH = "${PATH}:${getTerraformPath()}"
  }
-
+ stages {
+   stage ('Create S3 Bucket') {
+     script {
+       creates3Bucket('kams-devops')
+     }
+   }
+ }
  stages {
    stage ('terraform init and apply -dev'){
     steps {
@@ -26,4 +32,8 @@ pipeline {
 def getTerraformPath(){
   def tfHome = tool name: 'terraform', type: 'org.jenkinsci.plugins.terraform.TerraformInstallation'
   return tfHome
+}
+
+def creates3Bucket(bucketName) {
+sh label: 'dev', returnStatus: true, script: "aws s3 mb ${bucketName} --region=use-west-2"
 }
