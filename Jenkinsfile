@@ -4,7 +4,7 @@ pipeline {
  stages {
     stage(‘checkout’) {
       steps {
-        git branch: ‘develop’, url: ‘git@your url’
+        git branch: ‘master’, url: 'https://github.com/johnfolia/AWS-Terraform-Jenkins.git’
 
       }
     }
