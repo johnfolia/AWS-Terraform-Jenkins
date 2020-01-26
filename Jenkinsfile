@@ -3,13 +3,16 @@ pipeline {
  environment {
   PATH = "${PATH}:${getTerraformPath()}"
  }
- stages {
+}
+
+stages {
    stage ('Create S3 Bucket') {
-     script {
-       creates3Bucket('kams-devops')
+     steps {
+       script {
+          creates3Bucket('kams-devops')
+       }
      }
    }
- }
  stages {
    stage ('terraform init and apply -dev'){
     steps {
