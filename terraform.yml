@@ -10,10 +10,10 @@
     - name: Run Terraform scripts
       terraform:
         project_path: "./"
-        state: "{{ vars.state }}"
+        state: "{{ var.state }}"
         backend_config:
-          s3_bucket: "{{ vars.s3_bucket }}"
-          key: "{{ vars.key }}"
-          region: "{{ vars.region }}"
-        variable_file: "{{ vars.app_env }}.tfvars"
-        workspace: "{{ vars.app_env }}"
+          s3_bucket: "{{ var.s3_bucket }}"
+          key: "{{ var.key }}"
+          region: "{{ var.region }}"
+        variable_file: "{{ var.app_env }}.tfvars"
+        workspace: "{{ var.app_env }}"
