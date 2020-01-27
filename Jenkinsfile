@@ -14,14 +14,14 @@ pipeline {
    stage ('terraform init and apply -dev'){
      steps {
        sh "terraform init"
-       sh label: 'dev', returnStatus: true, script: 'terraform workspace new dev'
+       sh label: 'dev', returnStatus: true, script: 'terraform workspace new devnew'
        sh label: 'dev', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml'
      }
    }
    stage ('terraform init and apply -prod'){
      steps {
        sh "terraform init"
-       sh label: 'prod', returnStatus: true, script: 'terraform workspace new prod'
+       sh label: 'prod', returnStatus: true, script: 'terraform workspace new prodnew'
        sh label: 'prod', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=prod'
      }
    }
