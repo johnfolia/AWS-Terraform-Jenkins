@@ -13,16 +13,17 @@ pipeline {
    }
    stage ('terraform init and apply new-dev'){
      steps {
+
        sh label: 'new-dev', returnStatus: true, script: 'terraform workspace new new-dev'
-       sh label: 'new-dev', script: 'terraform init'
-       sh label: 'new-dev', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml'
+       sh label: 'new-dev', returnStatus: true, script: 'terraform init'
+       sh label: 'new-dev', returnStatus: true, script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml'
      }
    }
    stage ('terraform init and apply new-prod'){
      steps {
        sh label: 'new-prod', returnStatus: true, script: 'terraform workspace new new-prod'
-       sh label: 'new-prod', script: 'terraform init'
-       sh label: 'new-prod', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=prod'
+       sh label: 'new-prod', returnStatus: true, script: 'terraform init'
+       sh label: 'new-prod', returnStatus: true, script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=prod'
      }
    }
  }
