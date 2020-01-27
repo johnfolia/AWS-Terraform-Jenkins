@@ -3,7 +3,7 @@
   become: True
   vars:
     state: present
-    s3_bucket: kamsdevops
+    s3_bucket: devopsterra
     key: terraform.tfstate
     region: us-west-2
     app_env: newdev

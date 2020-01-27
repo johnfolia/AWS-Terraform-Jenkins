@@ -3,5 +3,13 @@
   tasks:
     - name: Create S3 Bucket
       s3_bucket:
-        name: kamsdevops
+        name: devopsterra
         state: present
+    - name: dynomoDB Table
+      dynamodb_table:
+        name: terrastatelock
+        region: us-west-2
+        read_capacity: 5
+        write_capacity: 5
+        tags:
+          tag_name: backend lock

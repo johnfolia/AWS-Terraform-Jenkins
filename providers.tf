@@ -3,10 +3,10 @@ provider "aws" {
 }
 terraform {
   backend "s3" {
-    bucket = "kamsdevops"
+    bucket = "devopsterra"
     key = "terraform.tfstate"
     region = "us-west-2"
-    dynamodb_table = "terraformlock"
+    dynamodb_table = "terrastatelock"
     encrypt = true
   }
 }
