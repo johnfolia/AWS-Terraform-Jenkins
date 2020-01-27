@@ -14,7 +14,6 @@ pipeline {
    stage ('terraform init and apply -newdev'){
      steps {
        sh "terraform init"
-       sh label: 'dev', script: 'terraform workspace delete dev'
        sh label: 'newdev', returnStatus: true, script: 'terraform workspace new newdev'
        sh label: 'newdev', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml'
      }
@@ -22,7 +21,6 @@ pipeline {
    stage ('terraform init and apply -newprod'){
      steps {
        sh "terraform init"
-       sh label: 'prod', script: 'terraform workspace delete prod'
        sh label: 'newprod', returnStatus: true, script: 'terraform workspace new newprod'
        sh label: 'newprod', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=prod'
      }
