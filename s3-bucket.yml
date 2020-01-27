@@ -9,6 +9,10 @@
       dynamodb_table:
         name: terrastatelock
         region: us-west-2
+        hash_key_name: id
+        hash_key_type: STRING
+        range_key_name: create_time
+        range_key_type: NUMBER
         read_capacity: 5
         write_capacity: 5
         tags:
