@@ -3,5 +3,5 @@
   tasks:
     - name: Create S3 Bucket
       s3_bucket:
-        name: kams-devops2
+        name: kams-devops
         state: present
