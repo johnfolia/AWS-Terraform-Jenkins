@@ -11,18 +11,20 @@ pipeline {
        sh label: 'create s3 bucket', script: 'sudo /home/ansible/.local/bin/ansible-playbook s3-bucket.yml'
      }
    }
-   stage ('terraform init and apply -dev'){
+   stage ('terraform init and apply -newdev'){
      steps {
        sh "terraform init"
-       sh label: 'dev', returnStatus: true, script: 'terraform workspace new devnew'
-       sh label: 'dev', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml'
+       sh label: 'dev', script: 'terraform workspace delete dev'
+       sh label: 'newdev', returnStatus: true, script: 'terraform workspace new newdev'
+       sh label: 'newdev', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml'
      }
    }
-   stage ('terraform init and apply -prod'){
+   stage ('terraform init and apply -newprod'){
      steps {
        sh "terraform init"
-       sh label: 'prod', returnStatus: true, script: 'terraform workspace new prodnew'
-       sh label: 'prod', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=prod'
+       sh label: 'prod', script: 'terraform workspace delete prod'
+       sh label: 'newprod', returnStatus: true, script: 'terraform workspace new newprod'
+       sh label: 'newprod', script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=prod'
      }
    }
  }
