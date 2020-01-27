@@ -23,7 +23,7 @@ pipeline {
      steps {
        sh label: 'new-prod', returnStatus: true, script: 'terraform workspace new new-prod'
        sh label: 'new-prod', returnStatus: true, script: 'terraform init'
-       sh label: 'new-prod', returnStatus: true, script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -environment app_env=new-prod'
+       sh label: 'new-prod', returnStatus: true, script: 'sudo /home/ansible/.local/bin/ansible-playbook terraform.yml -e app_env=new-prod'
      }
    }
  }
