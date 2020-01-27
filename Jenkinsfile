@@ -7,7 +7,7 @@ pipeline {
  stages {
    stage ('Create S3 Bucket') {
      steps {
-       sh label: 'create s3 bucket', script: '/home/ansible/.local/bin/ansible-playbook s3-bucket.yml'
+       sh label: 'create s3 bucket', script: 'sudo /home/ansible/.local/bin/ansible-playbook s3-bucket.yml'
      }
    }
    stage ('terraform init and apply -dev'){
