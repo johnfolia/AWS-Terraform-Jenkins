@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  become: True
   tasks:
     - name: Run Terraform scripts
       terraform:
