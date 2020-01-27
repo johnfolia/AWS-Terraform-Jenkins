@@ -1,14 +1,20 @@
 ---
 - hosts: localhost
   become: True
+  vars:
+    state: present
+    s3_bucket: kams-devops
+    key: terraform.tfstate
+    region: us-west-2
+    app_env: dev
   tasks:
     - name: Run Terraform scripts
       terraform:
         project_path: "./"
-        state: present
+        state: "{{state}}"
         backend_config:
-          s3_bucket: "kams-devops"
-          key: "terraform.tfstate"
-          region: "us-west-2"
-        variable_file: "dev.tfvars"
-        workspace: "dev"
+          s3_bucket: "{{s3_bucket}}"
+          key: "{{key}}"
+          region: "{{region}}"
+        variables_file: "{{app_env}}.tfvars"
+        workspace: "{{app_env}}"
