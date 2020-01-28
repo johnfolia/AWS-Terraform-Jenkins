@@ -6,7 +6,7 @@
     s3_bucket: devopsterra
     key: terraform.tfstate
     region: us-west-2
-    app_env: newdev
+    app_env: new-dev
   tasks:
     - name: Run Terraform scripts
       terraform:
